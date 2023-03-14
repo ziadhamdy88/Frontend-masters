@@ -11,8 +11,8 @@ async function init() {
   let isLoading = true;
   let done = false;
 
-  const promise = await fetch("https://words.dev-apis.com/word-of-the-day");
-  const {word: wordResponse} = await promise.json();
+  const res = await fetch("https://words.dev-apis.com/word-of-the-day");
+  const {word: wordResponse} = await res.json();
   const word = wordResponse.toUpperCase();
   const wordArray = word.split("");
   isLoading = false;
@@ -50,12 +50,12 @@ async function init() {
 
     isLoading = true;
     setLoading(isLoading);
-    const promise = await fetch("https://words.dev-apis.com/validate-word", {
+    const res = await fetch("https://words.dev-apis.com/validate-word", {
       method: "POST",
       body: JSON.stringify({ word: currentGuess })
     });
 
-    const { validWord } = await promise.json();
+    const { validWord } = await res.json();
     isLoading = false;
     setLoading(isLoading);
     
